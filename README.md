@@ -13,16 +13,23 @@ pip install pyreload
 ```
 
 ## Use cases
+
 This package is a command line tool that can be used to automatically restart a python program when it detects changes in the source code.
 It is designed to be used in development environments where you want to make changes to your code and see the results immediately without manually restarting the program.
 Some examples use cases are:
- - competitions where you want to make changes to your code and see the results immediately without manually restarting the program.
- - training for problems on [leetcode](https://leetcode.com/) or [codewars](https://www.codewars.com/) where you want to make changes to your code and see the results immediately without manually restarting the program.
- - debugging problems in a running program by making changes to the code and see the results immediately without manually restarting the program.
+ - competitions where you want to make changes to your code and see the results immediately.
+ - training for problems on [leetcode](https://leetcode.com/) or [codewars](https://www.codewars.com/) where you want to make changes to your code and see the results instantly.
+ - debugging problems in a running program by making changes to the code and seeing the results immediately.
+ - visualizing the output of a program in real time.
+ [examples/printer.py](./examples/printer.py) is an example of a program that visualizes the output of a program in real time.
+
+
+![PyReload Demo](pyreload_demo.gif)
+
 
 ## Usage
 ```bash
-pyreload main.py
+pyreload your_program.py
 ```
 
 ## with arguments
@@ -31,10 +38,21 @@ pyreload main.py arg1 arg2
 ```
 
 ## examples
+
+### [Two Sum](https://leetcode.com/problems/two-sum/) problem
 ```bash
 cd examples/two_sum
 pyreload main.py
 ```
 In this example, the program will automatically restart when changes are detected in either `main.py` or `two_sum.py`.
+`main.py` will test all cases in `input.txt` and compare the output with `output.txt`.
 
 
+### [Colored Text](./examples/printer.py) example
+```bash
+cd examples/printer
+pyreload main.py
+```
+In this example, the program will automatically restart when changes are detected in either `main.py` or `printer.py`.
+
+It is usefule to see how the colored text will look like without having to run the program manually for each change.
