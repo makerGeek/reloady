@@ -1,0 +1,2 @@
+[console_scripts]
+pyreload = pyreload.main:main

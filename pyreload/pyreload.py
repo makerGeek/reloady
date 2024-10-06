@@ -1,7 +1,8 @@
 #!/usr/bin/python                                                                                                                 
+from datetime import datetime
 import sys, os, time, threading, subprocess, fnmatch
 
-class SourceChangeMonitor(threading.Thread):
+class PyReload(threading.Thread):  # Changed class name from SourceChangeMonitor to PyReload
 
         # Remember the process ID of the subprocess for when                                                                 
         # we want to restart it                                                                                              
@@ -20,22 +21,48 @@ class SourceChangeMonitor(threading.Thread):
         # Entry point program to run                                                                                         
         PROGRAM = r"hello.py"
 
-        def __init__(self):
+        def __init__(self, program: str = "main.py", args: list = None):
+                """
+                Initialize the SourceChangeMonitor.
+
+                :param program: The entry point program to run (default is "main.py").
+                :param args: A list of arguments to pass to the program (default is None).
+                """
                 threading.Thread.__init__(self)
                 self.this_script_name = os.path.abspath( sys.argv[0] )
                 self.files = self.get_files()
+                self.PROGRAM = program  # Set the program to the provided parameter
+                self.args = args if args is not None else []  # Set the arguments
                 self.start_program()
 
-        def run(self):
+        def display_help(self) -> None:  # Updated help text to reflect new class name
+                """
+                Usage: PyReload [options]  # Updated usage information
+                ...
+                """
+                help_text = """
+                Usage: PyReload [options]
+
+                Options:
+                --help          Show this help message and exit.
+                program        Specify the entry point program to run (default is "main.py").
+                args           Additional arguments to pass to the program.
+
+                This script monitors specified Python files for changes and restarts the
+                specified program when changes are detected.
+                """
+                print(help_text)
+
+        def run(self) -> None:
                 while 1:
                         time.sleep(self.POLL_INTERVAL)
                         if self.poll():
-                                print( "-------------------------------------------------")
-                                print( "Noticed a change in program source. Restarting...")
-                                print( "-------------------------------------------------")
+                                print("-------------------------------------------------")
+                                print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}]Noticed a change in program source. Restarting...")
+                                print("-------------------------------------------------")
                                 self.start_program()
 
-        def get_files(self):
+        def get_files(self) -> list:
                 """                                                                                                          
                 Get a list of all files along with their timestamps for last modified                                        
                 """
@@ -52,7 +79,7 @@ class SourceChangeMonitor(threading.Thread):
                 files = [f for f in files if  f[0] != self.this_script_name]
                 return list(files)
 
-        def poll(self):
+        def poll(self) -> bool:
                 """                                                                                                                          Check if any source files have changed since last poll. Returns True if                                                      files have changed, False otherwise                                                                                          """
                 new_files = self.get_files()
                 if self.files != new_files:
@@ -60,15 +87,13 @@ class SourceChangeMonitor(threading.Thread):
                         return True
                 return False
 
-        def start_program(self):
+        def start_program(self) -> None:
                 """                                                                                                                          Start the program. If it was already started, kill it before restarting                                                      """
                 if self._process != None and self._process.poll() is None:
                         self._process.kill()
                         self._process.wait()
 
-                self._process = subprocess.Popen( [sys.executable, self.PROGRAM] )
+                self._process = subprocess.Popen( [sys.executable, self.PROGRAM] + self.args )  # Pass the arguments
 
 
 
-if __name__ == "__main__":
-        SourceChangeMonitor().start()

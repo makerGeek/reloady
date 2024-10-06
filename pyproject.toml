@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyreload"
+version = "0.1.0"
+authors = [
+  { name="Moetaz", email="moetaz@pingoware.tech" },
+]
+description = "A tool for automatically reloading Python programs on file changes"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/makergeek/pyreload"
+"Bug Tracker" = "https://github.com/makergeek/pyreload/issues"
+
+[project.scripts]
+pyreload = "pyreload.main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pyreload*"]
+exclude = ["tests*"]
+
+[tool.setuptools.package-data]
+pyreload = ["py.typed"]
+
+[tool.poetry]
+name = "pyreload"
+version = "0.1.0"
+description = "Hot Reload for Python"
+authors = ["Moetaz <moetaz@pingoware.tech>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
