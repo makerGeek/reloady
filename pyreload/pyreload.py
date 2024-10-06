@@ -23,7 +23,7 @@ class PyReload(threading.Thread):  # Changed class name from SourceChangeMonitor
 
         def __init__(self, program: str = "main.py", args: list = None):
                 """
-                Initialize the SourceChangeMonitor.
+                Initialize the PyReload module.
 
                 :param program: The entry point program to run (default is "main.py").
                 :param args: A list of arguments to pass to the program (default is None).
@@ -35,10 +35,9 @@ class PyReload(threading.Thread):  # Changed class name from SourceChangeMonitor
                 self.args = args if args is not None else []  # Set the arguments
                 self.start_program()
 
-        def display_help(self) -> None:  # Updated help text to reflect new class name
+        def display_help(self) -> None:
                 """
-                Usage: PyReload [options]  # Updated usage information
-                ...
+                Display usage information for the PyReload script.
                 """
                 help_text = """
                 Usage: PyReload [options]
@@ -63,8 +62,10 @@ class PyReload(threading.Thread):  # Changed class name from SourceChangeMonitor
                                 self.start_program()
 
         def get_files(self) -> list:
-                """                                                                                                          
-                Get a list of all files along with their timestamps for last modified                                        
+                """
+                Get a list of all files along with their timestamps for last modified.
+
+                :return: A list of tuples containing file paths and their last modified timestamps.
                 """
                 files = []
                 for root, dirnames, filenames in os.walk(self.ROOT_DIRECTORY):
@@ -80,7 +81,11 @@ class PyReload(threading.Thread):  # Changed class name from SourceChangeMonitor
                 return list(files)
 
         def poll(self) -> bool:
-                """                                                                                                                          Check if any source files have changed since last poll. Returns True if                                                      files have changed, False otherwise                                                                                          """
+                """
+                Check if any source files have changed since the last poll.
+
+                :return: True if files have changed, False otherwise.
+                """
                 new_files = self.get_files()
                 if self.files != new_files:
                         self.files = new_files
@@ -88,7 +93,9 @@ class PyReload(threading.Thread):  # Changed class name from SourceChangeMonitor
                 return False
 
         def start_program(self) -> None:
-                """                                                                                                                          Start the program. If it was already started, kill it before restarting                                                      """
+                """
+                Start the program. If it was already started, kill it before restarting.
+                """
                 if self._process != None and self._process.poll() is None:
                         self._process.kill()
                         self._process.wait()
