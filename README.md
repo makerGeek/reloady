@@ -1,9 +1,9 @@
-# python-hotreload
-automatically reexecutes python files when it detects changes
+# Reloady
+A hotreload cli that automatically reexecutes python files when it detects changes
 
 Port of [Jesper's SourceChangeMonitor.py](https://jesper.borgstrup.dk/2011/10/restart-python-program-if-source-has-been-modified/) to python 3
 
-Instructions on how to use are [here](https://jesper.borgstrup.dk/2011/10/restart-python-program-if-source-has-been-modified/)  ( or on [Wayback machine](https://web.archive.org/web/20200804150140/https://jesper.borgstrup.dk/2011/10/restart-python-program-if-source-has-been-modified/),  just in case.. )
+~~Instructions on how to use are [here](https://jesper.borgstrup.dk/2011/10/restart-python-program-if-source-has-been-modified/)  ( or on [Wayback machine](https://web.archive.org/web/20200804150140/https://jesper.borgstrup.dk/2011/10/restart-python-program-if-source-has-been-modified/),  just in case.. )~~
 
 
 ## Installation
@@ -24,7 +24,10 @@ Some examples use cases are:
  [examples/printer.py](./examples/printer.py) is an example of a program that visualizes the output of a program in real time.
 
 
-![Reloady Demo](reloady_demo.gif)
+![Reloady Demo](pyreload_demo.gif)
+
+
+P.S. cli command has been renamed from `pyreload` to `reloady`
 
 
 ## Usage
