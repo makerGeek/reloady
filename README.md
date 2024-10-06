@@ -9,7 +9,7 @@ Instructions on how to use are [here](https://jesper.borgstrup.dk/2011/10/restar
 ## Installation
 
 ```bash
-pip install pyreload
+pip install reloady
 ```
 
 ## Use cases
@@ -24,17 +24,17 @@ Some examples use cases are:
  [examples/printer.py](./examples/printer.py) is an example of a program that visualizes the output of a program in real time.
 
 
-![PyReload Demo](pyreload_demo.gif)
+![Reloady Demo](reloady_demo.gif)
 
 
 ## Usage
 ```bash
-pyreload your_program.py
+reloady your_program.py
 ```
 
 ## with arguments
 ```bash
-pyreload main.py arg1 arg2
+reloady main.py arg1 arg2
 ```
 
 ## examples
@@ -42,7 +42,7 @@ pyreload main.py arg1 arg2
 ### [Two Sum](https://leetcode.com/problems/two-sum/) problem
 ```bash
 cd examples/two_sum
-pyreload main.py
+reloady main.py
 ```
 In this example, the program will automatically restart when changes are detected in either `main.py` or `two_sum.py`.
 `main.py` will test all cases in `input.txt` and compare the output with `output.txt`.
@@ -51,7 +51,7 @@ In this example, the program will automatically restart when changes are detecte
 ### [Colored Text](./examples/printer.py) example
 ```bash
 cd examples/printer
-pyreload main.py
+reloady main.py
 ```
 In this example, the program will automatically restart when changes are detected in either `main.py` or `printer.py`.
 

@@ -3,8 +3,8 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pyreload"
-version = "0.1.0"
+name = "reloady"
+version = "0.1.1"
 authors = [
   { name="Moetaz", email="moetaz@pingoware.tech" },
 ]
@@ -18,25 +18,27 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/makergeek/pyreload"
-"Bug Tracker" = "https://github.com/makergeek/pyreload/issues"
+"Homepage" = "https://github.com/makergeek/reloady"
+"Bug Tracker" = "https://github.com/makergeek/reloady/issues"
 
 [project.scripts]
-pyreload = "pyreload.main:main"
+reloady = "reloady.main:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["pyreload*"]
+include = ["reloady*"]
 exclude = ["tests*"]
 
 [tool.setuptools.package-data]
-pyreload = ["py.typed"]
+reloady = ["py.typed"]
 
 [tool.poetry]
-name = "pyreload"
-version = "0.1.0"
+name = "reloady"
+version = "0.1.1"
 description = "Hot Reload for Python"
 authors = ["Moetaz <moetaz@pingoware.tech>"]
-
+packages = [
+    { include = "reloady" },
+]
 [tool.poetry.dependencies]
 python = "^3.7"
