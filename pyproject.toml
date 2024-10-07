@@ -4,13 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "reloady"
-version = "0.1.6"
+version = "0.1.7"
 authors = [
   { name="Moetaz", email="moetaz@pingoware.tech" },
 ]
 description = "A tool for automatically reloading Python programs on file changes"
 readme = "README.md"
-long_description_content_type = "text/markdown"
 requires-python = ">=3.7"
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -35,7 +34,7 @@ reloady = ["py.typed"]
 
 [tool.poetry]
 name = "reloady"
-version = "0.1.6"
+version = "0.1.7"
 authors = ["Moetaz <moetaz@pingoware.tech>"]
 packages = [
     { include = "reloady" },
